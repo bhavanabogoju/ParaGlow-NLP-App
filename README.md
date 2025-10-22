@@ -1,6 +1,6 @@
 
-# P![gify](https://github.com/user-attachments/assets/458b8f62-cfe9-4114-8277-7ece42cca54f)
-araGlow – Reimagine Your Words
+# ![gify](https://github.com/user-attachments/assets/458b8f62-cfe9-4114-8277-7ece42cca54f)
+ParaGlow – Reimagine Your Words
 
 An **AI-powered text transformation system** built with Streamlit, Groq, and Hugging Face. ParaGlow provides high-speed, intelligent summarization and advanced text rephrasing capabilities through a modern, responsive user interface.
 
