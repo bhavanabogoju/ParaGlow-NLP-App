@@ -130,6 +130,11 @@ Contributions, issues, and feature requests are welcome\!
   * Batch processing capability.
   * Advanced controls for paraphrasing tone (e.g., "more formal," "more casual").
 
+-----
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 <!-- end list -->
 
 ```
