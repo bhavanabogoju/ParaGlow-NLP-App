@@ -1,0 +1,278 @@
+/* === FROSTED GLASS MINIMALIST THEME (FINAL CORRECTED CSS) === */
+
+/* --- Import Font --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Color & Style Variables --- */
+:root {
+    --primary-light: #B4E8FF; /* Light blue */
+    --primary-dark: #6CA0DC;  /* Medium blue */
+    --accent-color: #A79FFF;  /* Soft purple */
+    
+    --bg-gradient-start: #E0EFFF; /* Very light blue background */
+    --bg-gradient-end: #F0F8FF;   /* Even lighter blue */
+    
+    --card-bg-light: rgba(255, 255, 255, 0.65); /* Frosted white card background */
+    --card-border-light: rgba(200, 200, 255, 0.4); /* Subtle card border */
+    
+    --text-dark: #1E293B; /* Darker Slate Gray for primary text */
+    --text-muted: #475569; /* Medium Slate Gray for secondary text */
+    
+    --button-gradient-start: #6CA0DC; /* Button blue start */
+    --button-gradient-end: #A79FFF;   /* Button purple end */
+    
+    /* --- Sidebar Variables --- */
+    --sidebar-bg: rgba(255, 255, 255, 0.95); /* Nearly opaque white */
+    --sidebar-text: #1E293B; /* Dark text for sidebar */
+    --sidebar-border: rgba(180, 180, 200, 0.4); /* Sidebar border */
+}
+
+/* --- Global Styles --- */
+html, body, [class*="css"], .stApp {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-dark);
+}
+
+/* --- App Background Gradient --- */
+.stApp {
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+    animation: gradientShift 10s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.stApp::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: 
+        radial-gradient(circle at 10% 80%, rgba(180, 232, 255, 0.3) 0%, transparent 40%),
+        radial-gradient(circle at 90% 20%, rgba(167, 159, 255, 0.3) 0%, transparent 40%);
+    filter: blur(100px);
+    opacity: 0.6;
+    z-index: -1;
+}
+
+
+/* --- Main Title & Header --- */
+.app-title {
+    font-size: 32px;
+    font-weight: 700;
+    background: linear-gradient(90deg, var(--primary-dark), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+.header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+/* --- Section Titles --- */
+.section-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.section-title::before {
+    content: '';
+    width: 5px;
+    height: 28px;
+    border-radius: 5px;
+    background: linear-gradient(180deg, var(--primary-dark), var(--accent-color));
+}
+
+/* --- Frosted Glass Cards --- */
+.neo-card {
+    background: var(--card-bg-light);
+    border: 1px solid var(--card-border-light);
+    border-radius: 18px;
+    padding: 28px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.neo-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* --- Sidebar Styling --- */
+[data-testid="stSidebar"] {
+    background: var(--sidebar-bg) !important;
+    padding: 20px;
+    border-right: 1px solid var(--sidebar-border);
+    box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+}
+
+/* Cards inside sidebar */
+[data-testid="stSidebar"] .neo-card {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: none;
+    border: 1px solid var(--sidebar-border);
+    padding: 20px;
+}
+
+/* Force all sidebar text to be dark */
+[data-testid="stSidebar"] * {
+    color: var(--sidebar-text) !important;
+}
+
+/* Fix for selected radio button label */
+[data-testid="stSidebar"] div[role="radiogroup"] label:has(input[type="radio"]:checked) span {
+    color: white !important; /* Make text white ONLY when selected */
+    font-weight: 600 !important;
+}
+
+/* --- Text Area --- */
+.stTextArea textarea {
+    background: rgba(255, 255, 255, 0.9) !important;
+    border: 1px solid rgba(180, 180, 200, 0.5) !important;
+    border-radius: 12px !important;
+    color: var(--text-dark) !important; /* Made text dark */
+    transition: all 0.3s ease;
+}
+.stTextArea textarea:focus {
+    border-color: var(--primary-dark) !important;
+    box-shadow: 0 0 12px rgba(108, 160, 220, 0.4) !important;
+}
+.stTextArea textarea::placeholder {
+  color: #777 !important;
+}
+
+/* --- Text Input (if any are used later) --- */
+.stTextInput input {
+    color: var(--text-dark) !important; /* Made text dark for regular inputs too */
+}
+
+
+/* --- Buttons --- */
+.stButton button {
+    background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end)) !important;
+    background-size: 200% auto !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 14px 28px !important;
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+    transition: all 0.3s ease !important;
+}
+.stButton button:hover {
+    background-position: right center !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* --- Radio & Slider (Sidebar Specific) --- */
+[data-testid="stSidebar"] .stRadio > div {
+    background: rgba(245, 245, 250, 0.8);
+    border-radius: 12px;
+    padding: 14px;
+    border: 1px solid var(--sidebar-border);
+}
+
+[data-testid="stSidebar"] .stSlider {
+    background: rgba(245, 245, 250, 0.8);
+    border-radius: 12px;
+    padding: 10px 14px;
+    border: 1px solid var(--sidebar-border);
+}
+
+[data-testid="stSidebar"] .stSlider [role="slider"] {
+    background-color: var(--accent-color) !important;
+    border: 2px solid white !important;
+}
+[data-testid="stSidebar"] .stSlider div[data-testid="stTickBar"] + div {
+    background: var(--primary-light) !important;
+}
+
+/* --- Status Badges --- */
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+}
+.status-success {
+    background: rgba(140, 210, 140, 0.2);
+    border: 1px solid rgba(100, 180, 100, 0.4);
+    color: #4CAF50;
+}
+.status-error {
+    background: rgba(255, 150, 150, 0.2);
+    border: 1px solid rgba(255, 100, 100, 0.4);
+    color: #E53935;
+}
+
+/* --- Info/Success/Error Messages --- */
+.stAlert {
+    border-radius: 12px !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(5px) !important;
+    color: var(--text-dark) !important;
+}
+.stAlert code {
+    color: #005A9C !important;
+    background: rgba(0,0,0,0.05) !important;
+}
+.stAlert a {
+    color: var(--primary-dark) !important;
+}
+
+
+/* --- Footer --- */
+.footer {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 40px;
+}
+.footer-highlight {
+    color: var(--primary-dark);
+    font-weight: 600;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+}
+
+/* === Analytics Dashboard Styling === */
+[data-testid="stMetric"] {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid var(--card-border-light);
+    border-radius: 12px;
+    padding: 12px 16px;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+[data-testid="stMetric"]:hover {
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+[data-testid="stMetricLabel"] {
+    color: var(--text-muted) !important;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+[data-testid="stMetricValue"] {
+    color: var(--text-dark) !important;
+    font-size: 28px;
+    font-weight: 600;
+}

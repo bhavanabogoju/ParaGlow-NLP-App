@@ -1,0 +1,4 @@
+# config.yaml
+artifacts:
+  log_file_path: "logs/app.log"
+  style_css_path: "style.css"
