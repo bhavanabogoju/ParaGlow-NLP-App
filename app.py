@@ -123,16 +123,31 @@ with col1:
     # --- NEW: LIVE ANALYTICS DASHBOARD ---
     st.markdown("<div style='height: 10px'></div>", unsafe_allow_html=True)
 
-    # Calculate stats (ensure correct indentation here)
+    # --- CHANGED: Updated Reading Time Logic ---
     if input_text:
         word_count = len(input_text.split())
         char_count = len(input_text)
-        # Avg reading speed is ~200 words per minute
-        reading_time = round(word_count / 200, 2) if word_count > 0 else 0
+        
+        # Calculate reading time in minutes (as a float)
+        reading_time_min = word_count / 200
+        
+        if reading_time_min < 1.0:
+            # If less than 1 min, show in seconds
+            reading_time_sec = round(reading_time_min * 60)
+            reading_time_label = "Reading Time (sec)"
+            reading_time_value = f"{reading_time_sec}"
+        else:
+            # If 1 min or more, show in minutes (rounded to 1 decimal)
+            reading_time_min_rounded = round(reading_time_min, 1)
+            reading_time_label = "Reading Time (min)"
+            reading_time_value = f"{reading_time_min_rounded}"
+            
     else:
+        # Default values when input is empty
         word_count = 0
         char_count = 0
-        reading_time = 0
+        reading_time_label = "Reading Time (min)"
+        reading_time_value = "0"
 
     # Display stats in 3 columns
     stat_col1, stat_col2, stat_col3 = st.columns(3)
@@ -141,8 +156,8 @@ with col1:
     with stat_col2:
         st.metric(label="Character Count", value=f"{char_count:,}")
     with stat_col3:
-        st.metric(label="Reading Time (min)", value=f"{reading_time}")
-
+        # Use the dynamic label and value from our new logic
+        st.metric(label=reading_time_label, value=reading_time_value)
     # --- END OF ANALYTICS FEATURE ---
 
     st.markdown("<div style='height: 20px'></div>", unsafe_allow_html=True) # Spacer
@@ -296,11 +311,9 @@ with st.sidebar:
             "<div class='status-badge status-success'>✓ Pipeline Active</div>",
             unsafe_allow_html=True
         )
-        # Display partial API key for confirmation (if key exists)
-        if HF_API_KEY:
-             st.caption(f"🔑 HF Key: `{HF_API_KEY[:4]}...{HF_API_KEY[-4:]}`")
-        if GROQ_API_KEY:
-             st.caption(f"🔑 Groq Key: `{GROQ_API_KEY[:4]}...{GROQ_API_KEY[-4:]}`")
+        st.write("Loaded Components:")
+        st.caption("• Summarization module ready.")
+        st.caption("• Paraphrasing module ready.")
 
     else:
         st.markdown(
