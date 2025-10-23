@@ -91,7 +91,8 @@ html, body, [class*="css"], .stApp {
     width: 5px;
     height: 28px;
     border-radius: 5px;
-    background: linear-gradient(180deg, var(--primary-dark), var(--accent-color));
+    /* CHANGED: Removed gradient for a solid color */
+    background: var(--primary-dark);
 }
 
 /* --- Frosted Glass Cards --- */
@@ -160,8 +161,11 @@ html, body, [class*="css"], .stApp {
 
 /* --- Buttons --- */
 .stButton button {
-    background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end)) !important;
-    background-size: 200% auto !important;
+    /* CHANGED: Removed gradient and background-size */
+    /* background: linear-gradient(90deg, var(--button-gradient-start), var(--button-gradient-end)) !important; */
+    /* background-size: 200% auto !important; */
+    background: var(--primary-dark) !important; /* ADDED: Solid background color */
+    
     color: white !important;
     border: none !important;
     border-radius: 10px !important;
@@ -172,7 +176,10 @@ html, body, [class*="css"], .stApp {
     transition: all 0.3s ease !important;
 }
 .stButton button:hover {
-    background-position: right center !important;
+    /* CHANGED: Removed gradient animation */
+    /* background-position: right center !important; */
+    filter: brightness(1.15) !important; /* ADDED: Simple brightness change */
+    
     transform: translateY(-2px) !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2) !important;
 }
